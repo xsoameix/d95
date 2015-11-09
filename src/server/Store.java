@@ -17,10 +17,6 @@ public class Store {
         }
     }
 
-    public ArrayList<String> getKeys() {
-        return keys;
-    }
-
     public Hashtable<String, Integer> getTreasure() {
         return treasure;
     }

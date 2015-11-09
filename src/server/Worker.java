@@ -39,10 +39,6 @@ public class Worker implements Runnable {
         this.store     = store;
     }
 
-    public Socket getSocket() {
-        return socket;
-    }
-
     public void run() {
         Hashtable<String, Integer> treasure = store.getTreasure();
         DataInputStream  in;
