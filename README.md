@@ -1,27 +1,15 @@
 # Getted Started
 
-Run server
+## Unit Test
 
-    $ java -cp bin server.Main
+    $ junit suite.TestSuite
 
-Run client
+`junit()` is defined below. Variable `eclipse` is eclipse's location.
 
-    $ java -cp bin client.Main
-
-# Design
-
-Server
-
-    loop
-      Server accept new connection until 2 connection arrive
-      Server notice worker to run
-      Server wait until any worker leave
-
-Worker
-
-    Worker wait until server notice it
-    Worker run
-      if connection close
-        Worker notice server to accept new connection
-      if any worker leave
-        Worker wait until new worker join
+    junit() {
+      local eclipse=$HOME/eclipse
+      local plugin=$eclipse/plugins
+      local junit=`find $plugin -name junit.jar`
+      local hamcrest=`find $plugin -name org.hamcrest.*.jar`
+      java -ea -cp bin:$junit:$hamcrest org.junit.runner.JUnitCore $1 2>&1 | less -S
+    }
