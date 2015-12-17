@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Vector;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -100,6 +101,19 @@ public class TestClient {
             fail(e.toString());
         }
     }
+
+    // Test connectServer() method.
+    // Server should return false if argument `serverip` is not correct.
+    @Test(expected = UnknownHostException.class)
+    public void testConnectServerArgumentServerip()
+    throws UnknownHostException {
+        Client client = new Client();
+        InetAddress addr = InetAddress.getByName("127.0.0.wrong");
+        boolean successful = client.connectServer(addr);
+        assertFalse(successful);
+        client.close();
+    }
+
 
     // Test whether Client has a assertion that
     // Client shoule close the previous connection before connecting to Server.
